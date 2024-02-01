@@ -1,5 +1,4 @@
 ﻿import random
-import os
 
 def loe_failist(f):
     fail = open(f, 'r', encoding="utf-8-sig")
