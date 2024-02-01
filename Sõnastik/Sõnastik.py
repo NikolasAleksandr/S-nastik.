@@ -1,5 +1,4 @@
 ﻿import random
-from gtts import gTTS
 import os
 
 def loe_failist(f):
@@ -43,9 +42,9 @@ def paranda_viga(eesti, vene):
     else:
         print("Seda sõna ei leitud.")
 
-def kontrolli_znaniye(eesti, vene):
+def kontrolli_teadmised(eesti, vene):
     õigeid = 0
-    küsimusi = min(len(eesti), len(vene))
+    küsimusi = 10
     for _ in range(küsimusi):
         suvaline_indeks = random.randint(0, küsimusi - 1)
         küsimus = eesti[suvaline_indeks]
@@ -60,12 +59,6 @@ def kontrolli_znaniye(eesti, vene):
     protsent = õigeid / küsimusi * 100
     print(f"Sinu tulemus: {õigeid}/{küsimusi} õiget. {protsent}%")
 
-
-def text_to_speech(sõna):
-    tts = gTTS(sõna, lang='et')
-    tts.save("audio.mp3")
-    os.system("start audio.mp3")
-
 rus = loe_failist("rus.txt")
 est = loe_failist("est.txt")
 
@@ -74,9 +67,8 @@ while True:
     print("2. Lisa sõna")
     print("3. Paranda viga")
     print("4. Kontrolli sõnavara")
-    print("5. Text to Speech")
     print("0. Välju")
-    valik = input("Vali tegevus (0-5): ")
+    valik = input("Vali tegevus (0-4): ")
 
     if valik == "0":
         break
@@ -92,8 +84,5 @@ while True:
         kirjuta_failisse("est.txt", est)
         kirjuta_failisse("rus.txt", rus)
     elif valik == "4":
-        kontrolli_znaniye(est, rus)
-    elif valik == "5":
-        sõna = input("Sisesta sõna, mida soovid kuulda: ")
-        text_to_speech(sõna)
+        kontrolli_teadmised(est, rus)
 
